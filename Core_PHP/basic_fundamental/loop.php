@@ -8,7 +8,7 @@
 
 Loop in php :4 type 
 
-while / do while / for  / foreach() used for arr var only
+while / do while / for              /      array loop  foreach() used for arr var only
   
 
 while(cond)    
@@ -37,11 +37,10 @@ foreach()
 $i=1;
 while($i<=10)
 {
-	echo $i . "<br>";
+	echo $i."<br>";
 	$i++;
 }
 */
-
 
 
 //do while
@@ -67,8 +66,8 @@ for($i=50;$i<=100;$i++)
 {
 	echo $i."<br>";
 }
-
 */
+
 
 // break
 
@@ -87,6 +86,8 @@ for($a=1;$a<=10;$a++)
 
 
 // continue
+
+/*
 for($a=1;$a<=10;$a++)
 {
 	if($a==7 || $a==9)
@@ -95,7 +96,7 @@ for($a=1;$a<=10;$a++)
 	}
     echo $a."<br>";		
 }
-
+*/
 ?>
 </body>
 </html>
