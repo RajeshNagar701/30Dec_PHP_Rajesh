@@ -4,6 +4,6 @@ echo date("d-m-y");
 
 echo "<br/> This add week in date: ".date("d-m-y",$nextweek);  // add week in date 
 
-echo "<br/>This add week by strtotime".date("d-m-y",strtotime("+ 1 week")); // add week in date by strtotime      
+echo "<br/>This add week by strtotime".date("d-m-y",strtotime("+ 2 week")); // add week in date by strtotime      
 
 ?>

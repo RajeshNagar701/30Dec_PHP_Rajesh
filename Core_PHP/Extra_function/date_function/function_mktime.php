@@ -6,7 +6,7 @@ echo "Toomoraw is".date("d/m/y",$tommorrow);
 date_default_timezone_set("Asia/Calcutta");
 
 echo "<br/>".$d=date("H:i:s A");
-$t=mktime(date("H")+1,date("i"),date("s")); // difine future time but reemove 0,0,0 and fist set date_default_timezone_setsss
-echo "<br/>". date("H:i:s A",$t);
+$t=mktime(date("H")+2,date("i"),date("s")); // difine future time but reemove 0,0,0 and fist set date_default_timezone_setsss
+echo "<br/>". date("H:i:s",$t);
 
 ?>
