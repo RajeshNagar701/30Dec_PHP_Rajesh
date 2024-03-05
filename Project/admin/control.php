@@ -1,10 +1,16 @@
 
 <?php
 
-class control
+include_once('model.php'); // step 1
+
+
+class control extends model   // step 2
 {
 	function __construct()
 	{
+		
+		model::__construct();   // step 3
+		
 		$url=$_SERVER['PATH_INFO']; //http://localhost/students/28Dec_PHP_2023/Project/website/control.php
 		
 		switch($url)
@@ -34,9 +40,11 @@ class control
 				include_once('manage_employees.php');
 			break;
 			case '/manage_user':
+				$arr_customers=$this->select('customers');
 				include_once('manage_user.php');
 			break;
 			case '/manage_contact':
+				$arr_contacts=$this->select('contacts');
 				include_once('manage_contact.php');
 			break;
 			case '/manage_order':
@@ -48,24 +56,7 @@ class control
 			case '/manage_feedback':
 				include_once('manage_feedback.php');
 			break;
-			case '/it_shop':
-				include_once('it_shop.php');
-			break;
-			case '/it_shop_detail':
-				include_once('it_shop_detail.php');
-			break;
-			case '/it_cart':
-				include_once('it_cart.php');
-			break;
-			case '/it_checkout':
-				include_once('it_checkout.php');
-			break;
-			case '/it_contact':
-				include_once('it_contact.php');
-			break;
-			case '/make_appointment':
-				include_once('make_appointment.php');
-			break;		
+	
 			default:
 				include_once('pnf.php');
 			break;	

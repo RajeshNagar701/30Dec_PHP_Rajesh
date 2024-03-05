@@ -68,7 +68,7 @@
             </div>
           </div>
           <div class="float-right">
-            <div class="make_appo"> <a class="btn white_btn" href="make_appointment">Make Appointment</a> </div>
+            <div class="make_appo"> <a class="btn white_btn" href="make_appointment">Make CALL</a> </div>
           </div>
         </div>
       </div>
