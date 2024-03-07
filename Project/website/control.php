@@ -1,10 +1,17 @@
 
 <?php
 
-class control
+include_once('../admin/model.php'); // step 1
+
+class control extends model   // step 2
 {
 	function __construct()
 	{
+		
+		model::__construct();   // step 3
+		
+		date_default_timezone_set("asia/calcutta");
+		
 		$url=$_SERVER['PATH_INFO']; //http://localhost/students/28Dec_PHP_2023/Project/website/control.php
 		
 		switch($url)
@@ -60,11 +67,88 @@ class control
 				include_once('it_checkout.php');
 			break;
 			case '/it_contact':
+				if(isset($_REQUEST['submit']))
+				{
+					$name=$_REQUEST['name'];
+					$email=$_REQUEST['email'];
+					$comment=$_REQUEST['comment'];	
+					
+					$created_at=date("Y-m-d H:i:s");
+					$updated_at=date("Y-m-d H:i:s");
+					
+					$arr=array("name"=>$name,"email"=>$email,"comment"=>$comment,"created_at"=>$created_at,"updated_at"=>$updated_at);
+					
+					$res=$this->insert('contacts',$arr);
+					if($res)
+					{
+						echo "<script> 
+						alert('Inquiry submit Success');
+						window.location='it_contact';
+						</script>";
+					}
+					else
+					{
+						echo "<script> 
+						alert('failed');
+						window.location='it_contact';
+						</script>";
+					}	
+				}
 				include_once('it_contact.php');
 			break;
 			case '/make_appointment':
 				include_once('make_appointment.php');
 			break;
+			
+			case '/login':
+				include_once('login.php');
+			break;
+			
+			case '/signup':
+				$arr_countries=$this->select('countries');
+				if(isset($_REQUEST['submit']))
+				{
+					$name=$_REQUEST['name'];
+					$email=$_REQUEST['email'];
+					$pass=md5($_REQUEST['pass']);
+					$gender=$_REQUEST['gender'];
+					
+					$lag_arr=$_REQUEST['lag'];
+					$lag=implode(",",$lag_arr);
+					
+					$file=$_FILES['file']['name'];
+					$path='images/customer/'.$file;
+					$copy_file=$_FILES['file']['tmp_name'];
+					move_uploaded_file($copy_file,$path);
+					
+					$cid=$_REQUEST['cid'];
+					
+					$created_at=date("Y-m-d H:i:s");
+					$updated_at=date("Y-m-d H:i:s");
+					
+					$arr=array("name"=>$name,"email"=>$email,"pass"=>$pass,
+					"gender"=>$gender,"lag"=>$lag,"file"=>$file,"cid"=>$cid,
+					"created_at"=>$created_at,"updated_at"=>$updated_at);
+					
+					$res=$this->insert('customers',$arr);
+					if($res)
+					{
+						echo "<script> 
+						alert('Signup submit Success');
+						window.location='signup';
+						</script>";
+					}
+					else
+					{
+						echo "<script> 
+						alert('failed');
+						window.location='signup';
+						</script>";
+					}	
+				}
+				include_once('signup.php');
+			break;
+			
 			default:
 				include_once('it_error.php');
 			break;			

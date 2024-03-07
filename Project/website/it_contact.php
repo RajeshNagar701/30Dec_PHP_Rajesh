@@ -83,25 +83,21 @@ include_once('header.php');
               <h4>GET IN TOUCH</h4>
               <p>Our goal is to provide the best customer service and to answer all of your questions in a timely manner.</p>
               <div class="form_section">
-                <form class="form_contant" action="index.php">
+                <form class="form_contant" action="" method="post">
                   <fieldset>
                   <div class="row">
+                   
                     <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                      <input class="field_custom" placeholder="Websire URL" type="text" required />
+                      <input class="field_custom" name="name" placeholder="Your name" type="text" required />
                     </div>
                     <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                      <input class="field_custom" placeholder="Your name" type="text" required />
+                      <input class="field_custom" name="email" placeholder="Email adress" type="email" required />
                     </div>
-                    <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                      <input class="field_custom" placeholder="Email adress" type="email" required />
-                    </div>
-                    <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                      <input class="field_custom" placeholder="Phone number" type="text" required />
-                    </div>
+                   
                     <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <textarea class="field_custom" placeholder="Messager" required ></textarea>
+                      <textarea class="field_custom" name="comment" placeholder="Messager" required ></textarea>
                     </div>
-                    <div class="center"><a class="btn main_bt" href="#">SUBMIT NOW</a></div>
+                    <div class="center"><input type="submit" name="submit" class="btn main_bt" value="SUBMIT NOW" /></div>
                   </div>
                   </fieldset>
                 </form>
