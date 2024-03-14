@@ -55,6 +55,7 @@ class control extends model   // step 2
 			break;
 			
 			case '/it_shop':
+				$arr_categories=$this->select('categories');
 				include_once('it_shop.php');
 			break;
 			case '/it_shop_detail':

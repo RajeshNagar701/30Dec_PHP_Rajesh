@@ -29,8 +29,23 @@ class model
 		$value_arr=array_values($arr);
 		$value=implode("','",$value_arr); // 'name','email',comment','created_at','udated_at'
 
-		$ins="insert into $tbl ($column) value ('$value')";  // query
+		echo $ins="insert into $tbl ($column) value ('$value')";  // query
 		$run=$this->conn->query($ins);  // run on db
+		return $run;
+	}
+	function delete($tbl,$where)
+	{
+		$col_arr=array_keys($where);
+		$value_arr=array_values($where);
+		
+		$del="delete from $tbl where 1=1";  // query
+		$i=0;
+		foreach($where as $w)
+		{
+			echo $del.=" and $col_arr[$i]='$value_arr[$i]'";
+			$i++;
+		}
+		$run=$this->conn->query($del);  // run on db
 		return $run;
 	}
 	

@@ -22,28 +22,36 @@ include_once('header.php');
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
+                                        <th>ID</th>
+                                        <th>Product Name</th>
+										<th>Cate_id</th>
+										<th>Price</th>
+										<th>Description</th>
+                                        <th>Image</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="odd gradeX">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 4.0</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">4</td>
-                                        <td class="center">X</td>
+                                 
+								<?php
+								foreach($arr_products as $c)
+								{
+								?>
+									<tr class="odd gradeX">
+                                        <td><?php echo $c->id?></td>
+                                        <td><?php echo $c->title?></td>
+										<td><?php echo $c->cate_id?></td>
+										<td><?php echo $c->price?></td>
+										<td><?php echo $c->description?></td>
+                                        <td><img src="assets/img/products/<?php echo $c->img?>" width="50px"></td>
+                                        <td class="center">
+											<a href="" class="btn btn-primary" >Edit</a>
+											<a href="delete?prod_del=<?php echo $c->id?>" class="btn btn-danger" >Delete</a>
+										</td>
                                     </tr>
-                                    <tr class="even gradeC">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 5.0</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">5</td>
-                                        <td class="center">C</td>
-                                    </tr>
+                                <?php
+								}
+								?> 
                                 
                                 </tbody>
                             </table>

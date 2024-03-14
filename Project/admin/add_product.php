@@ -15,74 +15,47 @@ include_once('header.php');
                         Add Product
                     </div>
                     <div class="panel-body">
-                        <form role="form">
-                            <div class="form-group">
-                                <label>Enter Name</label>
-                                <input class="form-control" type="text" />
+                        <form role="form" method="post" enctype="multipart/form-data">
+							<div class="form-group">
+                                <label>Categories Product</label>
+                                <select class="form-control" type="text" name="cate_id" >
+									<option value="">-------- Select Categories ---------</option>
+									<?php
+									foreach($arr_categories as $c)
+									{
+									?>
+										<option value="<?php echo $c->id?>">
+											<?php echo $c->cate_name?>
+										</option>
+									<?php		
+									}
+									?>
+								</select>
                                 <p class="help-block">Help text here.</p>
                             </div>
                             <div class="form-group">
-                                <label>Enter Email</label>
-                                <input class="form-control" type="text" />
+                                <label>Product title</label>
+                                <input class="form-control" type="text" name="title" />
+                                <p class="help-block">Help text here.</p>
+                            </div>
+							<div class="form-group">
+                                <label>Product price</label>
+                                <input class="form-control" type="number" name="price" />
+                                <p class="help-block">Help text here.</p>
+                            </div>
+							<div class="form-group">
+                                <label>Product description</label>
+                                <textarea class="form-control" name="description" ></textarea>
                                 <p class="help-block">Help text here.</p>
                             </div>
                             <div class="form-group">
-                                <label>Text area</label>
-                                <textarea class="form-control" rows="3"></textarea>
+                                <label>Upload Image</label>
+                                <input class="form-control" type="file" name="img"/>
+                                <p class="help-block">Help text here.</p>
                             </div>
-                            <div class="form-group">
-                                <label>Select Example</label>
-                                <select class="form-control">
-                                    <option>One Vale</option>
-                                    <option>Two Vale</option>
-                                    <option>Three Vale</option>
-                                    <option>Four Vale</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Checkboxes</label>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="" />Checkbox Example One
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="" />Checkbox Example Two
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="" />Checkbox Example Three
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="" />Checkbox Example Four
-                                    </label>
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="form-group">
-                                <label>Radio Button Examples</label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Radio Example One
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio Example Two
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio Example Three
-                                    </label>
-                                </div>
-                            </div>
+                        
 
-                            <button type="submit" class="btn btn-info">Send Message </button>
+                            <button type="submit" name="submit" class="btn btn-info">Submit </button>
 
                         </form>
                     </div>

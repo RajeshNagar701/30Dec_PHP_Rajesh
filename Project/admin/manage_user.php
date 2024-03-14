@@ -48,7 +48,7 @@ include_once('header.php');
 										<td><?php echo $c->file?></td>
                                         <td class="center">
 											<a href="" class="btn btn-primary" >Edit</a>
-											<a href="" class="btn btn-danger" >Delete</a>
+											<a href="delete?cust_del=<?php echo $c->id?>" class="btn btn-danger" >Delete</a>
 										</td>
                                     </tr>
                                 <?php

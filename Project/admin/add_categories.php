@@ -15,7 +15,7 @@ include_once('header.php');
                         Add Categories
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label>Categories Name</label>
                                 <input class="form-control" type="text" name="cate_name" />

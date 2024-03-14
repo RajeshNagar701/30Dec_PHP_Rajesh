@@ -29,16 +29,23 @@ include_once('header.php');
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="odd gradeX">
-                                        <td>1</td>
-                                        <td>Software</td>
-                                        <td><img src="" /></td>
-                                        <td class="center">
-                                            <a href="" class="btn btn-danger">Delete</a>
-                                            <a href="" class="btn btn-primary">Edit</a>
-                                        </td>
-                                    </tr>
                                  
+								<?php
+								foreach($arr_categories as $c)
+								{
+								?>
+									<tr class="odd gradeX">
+                                        <td><?php echo $c->id?></td>
+                                        <td><?php echo $c->cate_name?></td>
+                                        <td><img src="assets/img/categories/<?php echo $c->cate_img?>" width="50px"></td>
+                                        <td class="center">
+											<a href="" class="btn btn-primary" >Edit</a>
+											<a href="" class="btn btn-danger" >Delete</a>
+										</td>
+                                    </tr>
+                                <?php
+								}
+								?> 
                                 
                                 </tbody>
                             </table>
