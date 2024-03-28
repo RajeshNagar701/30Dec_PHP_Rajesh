@@ -7,6 +7,7 @@ class control extends model   // step 2
 {
 	function __construct()
 	{
+		session_start();
 		
 		model::__construct();   // step 3
 		
@@ -16,7 +17,7 @@ class control extends model   // step 2
 		
 		switch($url)
 		{
-			case '/':
+			case '':
 				include_once('index.php');
 			break;
 			case '/it_about':
@@ -102,8 +103,50 @@ class control extends model   // step 2
 			break;
 			
 			case '/login':
+				if(isset($_REQUEST['submit']))
+				{
+					
+					$email=$_REQUEST['email'];
+					$pass=md5($_REQUEST['pass']);	
+					$where=array("email"=>$email,"pass"=>$pass);
+					
+					$res=$this->select_where('customers',$where);
+					$chk=$res->num_rows; // check result by rows
+
+					if($chk==1)
+					{
+						$fetch=$res->fetch_object();
+						$_SESSION['id']=$fetch->id;
+						$_SESSION['name']=$fetch->name;
+						
+						echo "<script> 
+						alert('Login Success');
+						window.location='';
+						</script>";
+					}
+					else
+					{
+						echo "<script> 
+						alert('Login failed due to wrong creadential');
+						window.location='login';
+						</script>";
+					}	
+				}
 				include_once('login.php');
 			break;
+			
+			case '/logout':
+				
+				unset($_SESSION['id']);
+				unset($_SESSION['name']);
+				echo "<script> 
+						alert('Logout Success');
+						window.location='login';
+						</script>";
+				
+			break;
+			
+			
 			
 			case '/signup':
 				$arr_countries=$this->select('countries');

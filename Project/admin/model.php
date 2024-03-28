@@ -49,6 +49,26 @@ class model
 		return $run;
 	}
 	
+	function select_where($tbl,$where)
+	{
+		$col_arr=array_keys($where);
+		$value_arr=array_values($where);
+		
+		$sel="select * from $tbl where 1=1";  // query
+		$i=0;
+		foreach($where as $w)
+		{
+			echo $sel.=" and $col_arr[$i]='$value_arr[$i]'";
+			$i++;
+		}
+		$run=$this->conn->query($sel);  // run on db
+		return $run;
+	}
+	
+	
+	
+	
+	
 }
 $obj=new model;
 

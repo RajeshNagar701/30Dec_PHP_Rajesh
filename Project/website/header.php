@@ -51,7 +51,15 @@
               <ul class="list-inline">
                 <li> <span class="topbar-label"><i class="fa  fa-home"></i></span> <span class="topbar-hightlight">540 Lorem Ipsum New York, AB 90218</span> </li>
                 <li> <span class="topbar-label"><i class="fa fa-envelope-o"></i></span> <span class="topbar-hightlight"><a href="mailto:info@yourdomain.com">info@yourdomain.com</a></span> </li>
-              </ul>
+				<?php
+				if(isset($_SESSION['id']))
+				{
+				?>
+				<li> <span class="topbar-label"><i class="fa fa-user"></i></span> <span class="topbar-hightlight"><a href="profile">Hi .. <?php echo $_SESSION['name']?></a></span> </li>
+				<?php
+				}
+				?>
+			  </ul>
             </div>
           </div>
         </div>
@@ -68,8 +76,25 @@
             </div>
           </div>
           <div class="float-right">
-            <div class="make_appo"> <a class="btn white_btn" href="login">LoginL</a> </div>
-          </div>
+            <div class="make_appo"> 
+				<?php
+				if(isset($_SESSION['id']))
+				{
+				?>
+					<a class="btn white_btn" href="logout">Logout</a> 
+				<?php
+				}
+				else
+				{
+				?>
+					<a class="btn white_btn" href="login">Login</a> 
+				<?php	
+				}				
+				?>
+				
+			</div>
+          
+		  </div>
         </div>
       </div>
     </div>
