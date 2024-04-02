@@ -1,4 +1,10 @@
 <?php
+if(isset($_SESSION['id']))
+{
+	echo "<script> 
+		window.location='index';
+		</script>";
+}
 include_once('header.php');
 ?>
 <!-- inner page banner -->

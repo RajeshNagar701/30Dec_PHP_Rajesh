@@ -17,7 +17,10 @@ class control extends model   // step 2
 		
 		switch($url)
 		{
-			case '':
+			case '/':
+				include_once('index.php');
+			break;
+			case '/index':
 				include_once('index.php');
 			break;
 			case '/it_about':

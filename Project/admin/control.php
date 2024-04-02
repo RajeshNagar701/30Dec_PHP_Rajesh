@@ -9,15 +9,62 @@ class control extends model   // step 2
 	function __construct()
 	{
 		
+		session_start();
+		
 		model::__construct();   // step 3
 		
 		$url=$_SERVER['PATH_INFO']; //http://localhost/students/28Dec_PHP_2023/Project/website/control.php
 		
 		switch($url)
 		{
-			case '/admin':
+			case '/admin-login':
+			
+				if(isset($_REQUEST['submit']))
+				{
+					$email=$_REQUEST['email'];
+					$pass=md5($_REQUEST['pass']);
+					
+					$where=array("email"=>$email,"pass"=>$pass);
+					
+					$res=$this->select_where('admins',$where);
+					$ans=$res->num_rows;
+					
+					if($ans==1)
+					{
+						$fetch=$res->fetch_object();
+						$_SESSION['aid']=$fetch->id;
+						$_SESSION['aname']=$fetch->name;
+						
+						echo "<script> 
+						alert('Login Success');
+						window.location='dashboard';
+						</script>";
+					}
+					else
+					{
+						echo "<script> 
+						alert('Login failed due to wrong creadential');
+						window.location='admin-login';
+						</script>";
+					}	
+				}
 				include_once('index.php');
 			break;
+			
+			case '/adminlogout':
+				
+				unset($_SESSION['aid']);
+				unset($_SESSION['aname']);
+				echo "<script> 
+						alert('Logout Success');
+						window.location='admin-login';
+						</script>";
+			break;
+			
+			
+			
+			
+			
 			case '/dashboard':
 				include_once('dashboard.php');
 			break;

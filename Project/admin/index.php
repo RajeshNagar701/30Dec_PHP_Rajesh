@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿
+<?php
+if(isset($_SESSION['aid']))
+{
+	echo "<script> 
+		window.location='dashboard';
+		</script>";
+}
+?>
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -47,9 +57,9 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a href="index.html">ADMIN PANEL</a></li>
-
-
+                            <li><a href="admin-login">ADMIN PANEL</a></li>
+								
+							
 
                         </ul>
                     </div>
@@ -62,8 +72,28 @@
     <div class="content-wrapper">
         <div class="container">
             <div class="row pad-botm">
-                <div class="col-md-12">
+                <div class="col-md-8 col-md-offset-2">
                     <h4 class="header-line">ADMIN LOGIN</h4>
+					<div class="container">
+						<div class="row">
+							
+							
+							<form action="" method="post" >
+							
+								<div class="col-md-8 p-2">
+									Admin Email: <input type="email" name="email" class="form-control">
+								</div>	
+								<div class="col-md-8 p-2 mb-5">
+									Password: <input type="password" name="pass" class="form-control">
+								</div>	
+								
+								<div class="col-md-8 p-2">
+									<input type="submit" name="submit" value="Login" class="btn btn-primary">
+								</div>		
+							
+							</form>
+						</div>
+					</div>
 
                 </div>
 
