@@ -55,7 +55,8 @@
 				if(isset($_SESSION['id']))
 				{
 				?>
-				<li> <span class="topbar-label"><i class="fa fa-user"></i></span> <span class="topbar-hightlight"><a href="profile">Hi .. <?php echo $_SESSION['name']?></a></span> </li>
+				<li> <span class="topbar-label"><i class="fa fa-user"></i></span> <span class="topbar-hightlight"><a href="#">Hi .. <?php echo $_SESSION['name']?></a></span> </li>
+				<li> <span class="topbar-label"><i class="fa fa-user"></i></span> <span class="topbar-hightlight"><a href="profile">My Account</a></span> </li>
 				<?php
 				}
 				?>

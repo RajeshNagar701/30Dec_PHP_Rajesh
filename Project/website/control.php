@@ -62,6 +62,8 @@ class control extends model   // step 2
 				$arr_categories=$this->select('categories');
 				include_once('it_shop.php');
 			break;
+			
+			
 			case '/it_shop_detail':
 				include_once('it_shop_detail.php');
 			break;
@@ -149,7 +151,13 @@ class control extends model   // step 2
 				
 			break;
 			
-			
+			case '/profile':
+				$id=$_SESSION['id'];
+				$where=array("id"=>$id);
+				$res=$this->select_where('customers',$where);
+				$fetch=$res->fetch_object();
+				include_once('profile.php');
+			break;
 			
 			case '/signup':
 				$arr_countries=$this->select('countries');
