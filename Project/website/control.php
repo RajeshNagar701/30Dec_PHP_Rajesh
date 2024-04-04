@@ -159,6 +159,20 @@ class control extends model   // step 2
 				include_once('profile.php');
 			break;
 			
+			case '/edit_profile':
+				if(isset($_REQUEST['edit_user_btn']))
+				{	
+					$id=$_REQUEST['edit_user_btn'];
+					$where=array("id"=>$id);
+					$res=$this->select_where('customers',$where);
+					$fetch=$res->fetch_object();
+				}
+				$arr_countries=$this->select('countries');
+				include_once('edit_profile.php');
+			break;
+			
+			
+			
 			case '/signup':
 				$arr_countries=$this->select('countries');
 				if(isset($_REQUEST['submit']))

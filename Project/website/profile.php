@@ -46,7 +46,7 @@ include_once('header.php');
           </ul>
         </div>
 		<br><br><br>
-		<p><a class="btn main_bt" href="edit_profile">Edit Proile</a></p>
+		<p><a class="btn main_bt" href="edit_profile?edit_user_btn=<?php echo $fetch->id;?>">Edit Proile</a></p>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 about_feature_img padding_right_0">
         <div class="full text_align_center"> <img class="img-responsive" src="images/customer/<?php echo $fetch->file;?>" width="100%" alt="#" /> </div>
