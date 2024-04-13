@@ -91,7 +91,7 @@ include_once('header.php');
 					</div>
 					
 					<div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <input class="field_custom" name="file" type="file" required />
+                      <input class="field_custom" name="file" type="file" />
 					  <img src="images/customer/<?php echo $fetch->file;?>" width="50px"/>
                     </div>
 					

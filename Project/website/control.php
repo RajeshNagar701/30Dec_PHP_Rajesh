@@ -166,6 +166,56 @@ class control extends model   // step 2
 					$where=array("id"=>$id);
 					$res=$this->select_where('customers',$where);
 					$fetch=$res->fetch_object();
+					
+					
+					if(isset($_REQUEST['submit']))
+					{
+						$name=$_REQUEST['name'];
+						$email=$_REQUEST['email'];
+						$gender=$_REQUEST['gender'];
+						
+						$lag_arr=$_REQUEST['lag'];
+						$lag=implode(",",$lag_arr);
+					
+						$cid=$_REQUEST['cid'];
+						
+						$updated_at=date("Y-m-d H:i:s");
+						
+						if($_FILES['file']['size']>0)
+						{
+							
+							$old_img=$fetch->file;
+							$file=$_FILES['file']['name'];
+							$path='images/customer/'.$file;
+							$copy_file=$_FILES['file']['tmp_name'];
+							move_uploaded_file($copy_file,$path);
+							
+							$arr=array("name"=>$name,"email"=>$email,"gender"=>$gender,"lag"=>$lag,
+							"file"=>$file,"cid"=>$cid,"updated_at"=>$updated_at);
+							
+							$res=$this->update_where('customers',$arr,$where);
+							if($res)
+							{
+								unlink('images/customer/'.$old_img);
+								echo "<script> 
+								alert('Save Success');
+								window.location='profile';
+								</script>";
+							}
+						}
+						else
+						{
+							$arr=array("name"=>$name,"email"=>$email,"gender"=>$gender,"lag"=>$lag,"cid"=>$cid,"updated_at"=>$updated_at);
+							$res=$this->update_where('customers',$arr,$where);
+							if($res)
+							{
+								echo "<script> 
+									alert('Save Success');
+									window.location='profile';
+									</script>";
+							}
+						}
+					}
 				}
 				$arr_countries=$this->select('countries');
 				include_once('edit_profile.php');

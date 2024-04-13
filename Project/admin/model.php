@@ -65,7 +65,37 @@ class model
 		return $run;
 	}
 	
-	
+	function update_where($tbl,$arr,$where)
+	{
+		$col_arr=array_keys($arr);
+		$value_arr=array_values($arr);
+		$j=0;
+		$upd="update $tbl set";  // query   name="",email="", 
+		$count=count($arr);
+		foreach($arr as $d)
+		{
+			if($count==$j+1)
+			{
+				$upd.=" $col_arr[$j]='$value_arr[$j]'";
+			}
+			else
+			{
+				$upd.=" $col_arr[$j]='$value_arr[$j]',";
+				$j++;
+			}			
+		}
+		$upd.=" where 1=1";
+		$col_where=array_keys($where);
+		$value_where=array_values($where);
+		$i=0;
+		foreach($where as $w)
+		{
+			echo $upd.=" and $col_where[$i]='$value_where[$i]'";
+			$i++;
+		}
+		$run=$this->conn->query($upd);  // run on db
+		return $run;
+	}
 	
 	
 	
