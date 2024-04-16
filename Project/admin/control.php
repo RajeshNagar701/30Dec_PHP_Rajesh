@@ -191,7 +191,37 @@ class control extends model   // step 2
 				}
 			break;
 			
+			case '/status':
 			
+				if(isset($_REQUEST['cust_status']))
+				{
+					$id=$_REQUEST['cust_status'];
+					$where=array("id"=>$id);
+					$res=$this->select_where('customers',$where);
+					$fetch=$res->fetch_object();
+					
+					if($fetch->status=="Enable")
+					{
+						$arr=array("status"=>"Desable");
+						$res=$this->update_where('customers',$arr,$where);	
+						echo "<script> 
+						alert('Desable Success');
+						window.location='manage_user';
+						</script>";
+						unset($_SESSION['id']);
+						unset($_SESSION['name']);
+					}
+					else
+					{
+						$arr=array("status"=>"Enable");
+						$res=$this->update_where('customers',$arr,$where);	
+						echo "<script> 
+						alert('Enable Success');
+						window.location='manage_user';
+						</script>";
+					}
+				}
+			break;
 	
 			default:
 				include_once('pnf.php');

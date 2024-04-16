@@ -45,10 +45,11 @@ include_once('header.php');
                                         <td><?php echo $c->gender?></td>
 										<td><?php echo $c->lag?></td>
 										<td><?php echo $c->cid?></td>
-										<td><?php echo $c->file?></td>
+										<td><img src="../website/images/customer/<?php echo $c->file?>" width="50px"></td>
                                         <td class="center">
 											<a href="" class="btn btn-primary" >Edit</a>
 											<a href="delete?cust_del=<?php echo $c->id?>" class="btn btn-danger" >Delete</a>
+											<a href="status?cust_status=<?php echo $c->id?>" class="btn btn-primary" ><?php echo $c->status?></a>
 										</td>
                                     </tr>
                                 <?php

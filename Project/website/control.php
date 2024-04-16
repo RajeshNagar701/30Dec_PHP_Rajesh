@@ -121,13 +121,23 @@ class control extends model   // step 2
 					if($chk==1)
 					{
 						$fetch=$res->fetch_object();
-						$_SESSION['id']=$fetch->id;
-						$_SESSION['name']=$fetch->name;
-						
-						echo "<script> 
-						alert('Login Success');
-						window.location='';
-						</script>";
+						if($fetch->status=="Enable")
+						{
+							$_SESSION['id']=$fetch->id;
+							$_SESSION['name']=$fetch->name;
+							
+							echo "<script> 
+							alert('Login Success');
+							window.location='';
+							</script>";
+						}
+						else
+						{
+							echo "<script> 
+							alert('Login Failed due to Desabled Account');
+							window.location='login';
+							</script>";
+						}
 					}
 					else
 					{
