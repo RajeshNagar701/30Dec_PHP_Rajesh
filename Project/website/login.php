@@ -46,15 +46,20 @@ include_once('header.php');
                   <fieldset>
                   <div class="row">
                     <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <input class="field_custom" name="email" placeholder="Email adress" type="email" required />
+                      <input value="<?php if(isset($_COOKIE['cemail'])) {echo $_COOKIE['cemail'];}?>" class="field_custom" name="email" placeholder="Email adress" type="email" required />
                     </div>
                     <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <input class="field_custom" name="pass" placeholder="Password" type="password" required />
+                      <input value="<?php if(isset($_COOKIE['cpass'])) { echo $_COOKIE['cpass'];}?>" class="field_custom" name="pass" placeholder="Password" type="password" required />
                     </div>
-                    <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<br>	
+					 <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <input name="rem"  type="checkbox"/> : Remember me
+                    </div>
+                    <br>
+					<div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-5">
 						<div><input type="submit" name="submit" class="btn main_bt" value="Login" /></div>
 					</div>
-					 <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					 <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-5">
 						<div class="center"><a href="signup">If you not registered then Click here for Signup</a></div>
 					</div>
 				  </div>

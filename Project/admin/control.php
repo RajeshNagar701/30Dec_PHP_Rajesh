@@ -22,7 +22,8 @@ class control extends model   // step 2
 				if(isset($_REQUEST['submit']))
 				{
 					$email=$_REQUEST['email'];
-					$pass=md5($_REQUEST['pass']);
+					$normal_pass=$_REQUEST['pass'];
+					$pass=md5($normal_pass);
 					
 					$where=array("email"=>$email,"pass"=>$pass);
 					
@@ -34,6 +35,13 @@ class control extends model   // step 2
 						$fetch=$res->fetch_object();
 						$_SESSION['aid']=$fetch->id;
 						$_SESSION['aname']=$fetch->name;
+						
+						
+						if(isset($_REQUEST['admin_rem']))
+						{
+							setcookie('admin_cemail',$email,time()+(365*24*60*60));
+							setcookie('admin_cpass',$normal_pass,time()+(365*24*60*60));
+						}
 						
 						echo "<script> 
 						alert('Login Success');

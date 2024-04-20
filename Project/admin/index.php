@@ -81,12 +81,14 @@ if(isset($_SESSION['aid']))
 							<form action="" method="post" >
 							
 								<div class="col-md-8 p-2">
-									Admin Email: <input type="email" name="email" class="form-control">
+									Admin Email: <input value="<?php if(isset($_COOKIE['admin_cemail'])) {echo $_COOKIE['admin_cemail'];}?>" type="email" name="email" class="form-control">
 								</div>	
 								<div class="col-md-8 p-2 mb-5">
-									Password: <input type="password" name="pass" class="form-control">
+									Password: <input value="<?php if(isset($_COOKIE['admin_cpass'])) {echo $_COOKIE['admin_cpass'];}?>"type="password" name="pass" class="form-control">
 								</div>	
-								
+								<div class="col-md-8 p-2 mb-5">
+									Remember Me : <input type="checkbox" name="admin_rem" >
+								</div>	
 								<div class="col-md-8 p-2">
 									<input type="submit" name="submit" value="Login" class="btn btn-primary">
 								</div>		

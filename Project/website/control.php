@@ -112,7 +112,8 @@ class control extends model   // step 2
 				{
 					
 					$email=$_REQUEST['email'];
-					$pass=md5($_REQUEST['pass']);	
+					$normal_pass=$_REQUEST['pass'];	
+					$pass=md5($normal_pass);	
 					$where=array("email"=>$email,"pass"=>$pass);
 					
 					$res=$this->select_where('customers',$where);
@@ -123,8 +124,15 @@ class control extends model   // step 2
 						$fetch=$res->fetch_object();
 						if($fetch->status=="Enable")
 						{
+							
 							$_SESSION['id']=$fetch->id;
 							$_SESSION['name']=$fetch->name;
+							
+							if(isset($_REQUEST['rem']))
+							{
+								setcookie('cemail',$email,time()+3600);
+								setcookie('cpass',$normal_pass,time()+3600);
+							}
 							
 							echo "<script> 
 							alert('Login Success');
