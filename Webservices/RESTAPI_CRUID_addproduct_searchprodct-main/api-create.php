@@ -1,4 +1,7 @@
 <?php
+
+//http://localhost/students/28Dec_PHP_2023/Webservices/RESTAPI_CRUID_addproduct_searchprodct-main/api-create.php   method post
+
 // insert api
 header("Content-Type: application/json");
 header("Acess-Control-Allow-Origin: *");
@@ -7,8 +10,8 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 $data_arr = json_decode(file_get_contents("php://input"), true);
 
-$pname = "Calculator";//$data_arr["product_name"]; // value of pname
-$pprice ="599"; //$data_arr["product_price"]; // value of price
+$pname =$data_arr["product_name"]; // value of pname
+$pprice =$data_arr["product_price"]; // value of price
 
 require_once "dbconfig.php";
 
