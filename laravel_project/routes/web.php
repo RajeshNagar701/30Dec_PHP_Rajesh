@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +21,9 @@ Route::get('/', function () {
     return view('website.index');
 });
 
+//Route::view('/dashboard','admin.dashboard');  // Limitation don’t pass value in this method
+
+
 Route::get('/it_about', function () {
     return view('website.it_about');
 });
@@ -30,30 +37,33 @@ Route::get('/edit_profile', function () {
 Route::get('/it_blog', function () {
     return view('website.it_blog');
 });
-Route::get('/it_contact', function () {
-    return view('website.it_contact');
-});
-Route::get('/login', function () {
-    return view('website.login');
-});
-Route::get('/profile', function () {
-    return view('website.profile');
-});
-Route::get('/signup', function () {
-    return view('website.signup');
-});
+
+Route::get('/it_contact',[ContactController::class],'create');
+
+
+Route::get('/signup',[CustomerController::class,'create']);
+Route::get('/login',[CustomerController::class,'user_login']);
+Route::get('/profile',[CustomerController::class,'show']);
+
+
+
 
 // Admin
 
-
-Route::get('/admin_login', function () {
-    return view('admin.index');
-});
+Route::get('/admin_login',[CustomerController::class,'admin_login']);
+Route::get('/manage_user',[CustomerController::class,'index']);
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
 
-Route::get('/add_categories', function () {
-    return view('admin.add_categories');
-});
+
+Route::get('/manage_categories',[CategoryController::class,'index']);
+Route::get('/add_categories',[CategoryController::class,'create']);
+
+Route::get('/manage_contact',[ContactController::class,'index']);
+
+
+
+Route::get('/manage_product',[ProductController::class,'index']);
+Route::get('/add_product',[ProductController::class,'create']);

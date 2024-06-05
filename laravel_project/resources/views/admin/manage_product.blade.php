@@ -39,11 +39,11 @@
 								?>
 									<tr class="odd gradeX">
                                         <td><?php echo $c->id?></td>
-                                        <td><?php echo $c->title?></td>
+                                        <td><?php echo $c->prod_name?></td>
 										<td><?php echo $c->cate_id?></td>
-										<td><?php echo $c->price?></td>
-										<td><?php echo $c->description?></td>
-                                        <td><img src="<?php echo $c->img?>" width="50px"></td>
+										<td><?php echo $c->main_price?></td>
+										<td><?php echo $c->prod_desc?></td>
+                                        <td><img src="<?php echo $c->prod_img?>" width="50px"></td>
                                         <td class="center">
 											<a href="" class="btn btn-primary" >Edit</a>
 											<a href="delete?prod_del=<?php echo $c->id?>" class="btn btn-danger" >Delete</a>

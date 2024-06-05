@@ -44,7 +44,7 @@
 
             <div class="right-div">
 				<h1> 
-					Hi ... <?php echo $_SESSION['aname']; ?>
+					Hi ... <?php //echo $_SESSION['aname']; ?>
 				</h1>
                 <a href="adminlogout" class="btn btn-danger pull-right">LOG ME OUT</a>
             </div>
@@ -72,18 +72,10 @@
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="manage_product">Manage</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">Employee<i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="add_employees">ADD</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="manage_employees">Manage</a></li>
-                                </ul>
-                            </li>
+                           
                             <li><a href="manage_user">User</a></li>
                             <li><a href="manage_contact">Contact</a></li>
-                            <li><a href="manage_order">Order</a></li>
-                            <li><a href="manage_cart">Cart</a></li>
-                            <li><a href="manage_feedback">Feedback</a></li>
+                          
 
                         </ul>
                     </div>
