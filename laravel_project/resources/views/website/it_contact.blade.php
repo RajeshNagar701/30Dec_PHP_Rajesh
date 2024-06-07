@@ -83,10 +83,10 @@
               <h4>GET IN TOUCH</h4>
               <p>Our goal is to provide the best customer service and to answer all of your questions in a timely manner.</p>
               <div class="form_section">
-                <form class="form_contant" action="" method="post">
+                <form class="form_contant" action="{{url('it_contact')}}" method="post">
+                  @csrf
                   <fieldset>
                   <div class="row">
-                   
                     <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
                       <input class="field_custom" name="name" placeholder="Your name" type="text" required />
                     </div>

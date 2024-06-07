@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\contact;
+use App\Models\customer;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -36,7 +37,12 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=new contact();
+        $data->name=$request->name;
+        $data->email=$request->email;
+        $data->comment=$request->comment;
+        $data->save();
+        return redirect('/it_contact');
     }
 
     /**
@@ -79,8 +85,10 @@ class ContactController extends Controller
      * @param  \App\Models\contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(contact $contact)
+    public function destroy(contact $contact,$id)
     {
-        //
+        $data=contact::find($id); // find only id data from table
+        $data->delete();
+        return redirect('/manage_contact'); 
     }
 }

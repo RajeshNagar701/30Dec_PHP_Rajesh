@@ -40,7 +40,7 @@
                                         <td><img src="<?php echo $c->cate_img?>" width="50px"></td>
                                         <td class="center">
 											<a href="" class="btn btn-primary" >Edit</a>
-											<a href="" class="btn btn-danger" >Delete</a>
+											<a href="manage_categories/<?php echo $c->id?>" class="btn btn-danger" >Delete</a>
 										</td>
                                     </tr>
                                 <?php

@@ -79,8 +79,10 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(product $product)
+    public function destroy(product $product,$id)
     {
-        //
+        $data=product::find($id); // find only id data from table
+        $data->delete();
+        return redirect('/manage_product'); 
     }
 }
