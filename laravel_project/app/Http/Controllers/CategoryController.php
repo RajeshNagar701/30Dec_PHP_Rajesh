@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\category;
 use Illuminate\Http\Request;
-
+use Alert;
 class CategoryController extends Controller
 {
     /**
@@ -83,6 +83,7 @@ class CategoryController extends Controller
     {
         $data=category::find($id); // find only id data from table
         $data->delete();
+        Alert::success('Congrats', 'You\'ve Successfully Deleted');
         return redirect('/manage_categories'); 
     }
 }

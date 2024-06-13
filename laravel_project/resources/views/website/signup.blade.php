@@ -1,5 +1,5 @@
 <?php
-if (isset($_SESSION['id'])) {
+if(session()->has('id')) {
   echo "<script> 
 		window.location='index';
 		</script>";
@@ -46,24 +46,40 @@ if (isset($_SESSION['id'])) {
                   <fieldset>
                     <div class="row">
                       <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <input class="field_custom" name="name" placeholder="Name" type="text" required />
+                        <input class="field_custom" value="{{old('name')}}" name="name" placeholder="Name" type="text"  />
+                        @error('name')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
                       </div>
                       <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <input class="field_custom" name="email" placeholder="Email adress" type="email" required />
+                        <input class="field_custom" value="{{old('email')}}" name="email" placeholder="Email adress" type="email"  />
+                        @error('email')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                       </div>
                       <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <input class="field_custom" name="password" placeholder="Password" type="password" required />
+                        <input class="field_custom" value="{{old('password')}}" name="password" placeholder="Password" type="password"  />
+                        @error('password')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                       </div>
                       <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <input class="field_custom" name="mobile" placeholder="Mobile" type="number" required />
+                        <input class="field_custom" value="{{old('mobile')}}" name="mobile" placeholder="Mobile" type="number"  />
+                        @error('mobile')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                       </div>
 
                       <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12 p-4">
                         <div>
                           Gender :
-                          Male : <input type="radio" name="gender" value="Male" />
+                          Male : <input type="radio"  name="gender" value="Male" />
                           Female : <input type="radio" name="gender" value="Female" />
                         </div>
+                        @error('gender')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                       </div>
                       <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12 p-4">
                         <div>
@@ -71,15 +87,23 @@ if (isset($_SESSION['id'])) {
                           Hindi : <input type="checkbox" name="lag[]" value="Hindi" />
                           English : <input type="checkbox" name="lag[]" value="English" />
                           Gujarati : <input type="checkbox" name="lag[]" value="Gujarati" />
+                          @error('lag')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                          @enderror
                         </div>
+                       
+                        
                       </div>
 
                       <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <input class="field_custom" name="img" type="file" required />
+                        <input class="field_custom" value="{{old('img')}}" name="img" type="file"  />
+                        @error('img')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                       </div>
 
                       <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-5">
-                        <select class="form-control" name="cid" required>
+                        <select class="form-control" name="cid" >
                           <option>----- Select Country -----</option>
                           <?php
                           foreach ($arr_countries as $c) {
@@ -89,6 +113,9 @@ if (isset($_SESSION['id'])) {
                           }
                           ?>
                         </select>
+                        @error('cid')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                       </div>
 
                       <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">

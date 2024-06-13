@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\admin;
 use Illuminate\Http\Request;
-
+use Alert;
+use Hash;
 class AdminController extends Controller
 {
     /**
@@ -16,6 +17,56 @@ class AdminController extends Controller
     public function admin_login()
     {
         return view('admin.index');
+    }
+
+    public function admin_auth(Request $request)
+    {
+        $validated = $request->validate([
+             'email' => 'required',
+             'password' => 'required',
+         ]);
+         
+        $email=$request->email;
+
+        $data=admin::where('email','=',$email)->first(); 
+        if($data)
+        {
+            $chk=Hash::check($request->password,$data->password);
+			if($chk)
+            {
+                // session  create
+                session()->put('aid', $data->id);   
+                session()->put('aname', $data->name); 
+                session()->put('aemail', $data->email);
+                
+                // session('email') use
+                // session()->pull('id') delete
+
+                Alert::success('Congrats', 'You\'ve Successfully Login');
+                return redirect('/dashboard');
+            }
+            else
+            {
+                Alert::error('Failed', 'You\'ve Login Failed Due to Wrong Password');
+                return redirect('/admin_login');
+            }
+        }
+        else
+        {
+            Alert::error('Failed', 'You\'ve Login Failed Due to Wrong Email');
+            return redirect('/admin_login');
+        }
+    }
+
+   
+    public function adminlogout()
+    {
+        // delete
+        session()->pull('aid'); //session()->pull('id');
+        session()->pull('aname');
+        session()->pull('aemail');
+        Alert::success('Congrats', 'You\'ve Logout Successfully');
+        return redirect('/admin_login');
     }
 
     public function index()

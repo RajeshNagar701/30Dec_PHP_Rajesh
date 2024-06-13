@@ -36,7 +36,7 @@
       <![endif]-->
 </head>
 <body id="default_theme" class="it_service">
-
+@include('sweetalert::alert')
 <!-- loader -->
 <div class="bg_load"> <img class="loader_animation" src="{{ url('website/images/loaders/loader_1.png')}}" alt="#" /> </div>
 <!-- end loader -->
@@ -53,10 +53,10 @@
                 <li> <span class="topbar-label"><i class="fa  fa-home"></i></span> <span class="topbar-hightlight">540 Lorem Ipsum New York, AB 90218</span> </li>
                 <li> <span class="topbar-label"><i class="fa fa-envelope-o"></i></span> <span class="topbar-hightlight"><a href="mailto:info@yourdomain.com">info@yourdomain.com</a></span> </li>
 				<?php
-				if(isset($_SESSION['id']))
+				if(session()->has('id'))
 				{
 				?>
-				<li> <span class="topbar-label"><i class="fa fa-user"></i></span> <span class="topbar-hightlight"><a href="#">Hi .. <?php echo $_SESSION['name']?></a></span> </li>
+				<li> <span class="topbar-label"><i class="fa fa-user"></i></span> <span class="topbar-hightlight"><a href="#">Hi .. {{session('name')}}</a></span> </li>
 				<li> <span class="topbar-label"><i class="fa fa-user"></i></span> <span class="topbar-hightlight"><a href="profile">My Account</a></span> </li>
 				<?php
 				}
@@ -80,10 +80,10 @@
           <div class="float-right">
             <div class="make_appo"> 
 				<?php
-				if(isset($_SESSION['id']))
+				if(session()->has('id'))
 				{
 				?>
-					<a class="btn white_btn" href="logout">Logout</a> 
+					<a class="btn white_btn" href="userlogout">Logout</a> 
 				<?php
 				}
 				else

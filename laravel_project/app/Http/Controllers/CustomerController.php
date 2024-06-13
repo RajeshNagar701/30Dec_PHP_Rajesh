@@ -6,6 +6,7 @@ use App\Models\customer;
 use App\Models\country;
 use Illuminate\Http\Request;
 use Hash;
+use Alert;
 class CustomerController extends Controller
 {
     /**
@@ -19,6 +20,54 @@ class CustomerController extends Controller
         return view('website.login');
     }
 
+    public function user_auth(Request $request)
+    {
+        $validated = $request->validate([
+             'email' => 'required',
+             'password' => 'required',
+         ]);
+        $email=$request->email;
+
+        $data=customer::where('email','=',$email)->first(); 
+        if($data)
+        {
+            $chk=Hash::check($request->password,$data->password);
+			if($chk)
+            {
+                // session  create
+                session()->put('id', $data->id);   
+                session()->put('name', $data->name); 
+                session()->put('email', $data->email);
+                
+                // session('email') use
+                // session()->pull('id') delete
+
+                Alert::success('Congrats', 'You\'ve Successfully Login');
+                return redirect('/');
+            }
+            else
+            {
+                Alert::error('Failed', 'You\'ve Login Failed Due to Wrong Password');
+                return redirect('/login');
+            }
+        }
+        else
+        {
+            Alert::error('Failed', 'You\'ve Login Failed Due to Wrong Email');
+            return redirect('/login');
+        }
+    }
+
+   
+    public function userlogout()
+    {
+        // delete
+        session()->pull('id'); //session()->pull('id');
+        session()->pull('name');
+        session()->pull('email');
+        Alert::success('Congrats', 'You\'ve Logout Successfully');
+        return redirect('/');
+    }
 
 
     public function index()
@@ -46,6 +95,17 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+           'name' => 'required|alpha:ascii |max:255',
+            'email' => 'required|unique:customers',
+            'password' => 'required|min:8|max:12',
+            'mobile' => 'required|digits:10',
+            'gender' => ['required', 'in:Male,Female'],
+            'lag' => 'required',
+            'cid' => 'required',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
         $data=new customer();
         $data->name=$request->name;
         $data->email=$request->email;
@@ -62,6 +122,7 @@ class CustomerController extends Controller
         $data->img=$filename;
         $data->cid=$request->cid;
         $data->save();
+        Alert::success('Congrats', 'You\'ve Successfully Registered');
         return redirect('/signup');
     }
 
@@ -73,7 +134,9 @@ class CustomerController extends Controller
      */
     public function show(customer $customer)
     {
-        return view('website.profile');
+        $data=customer::find(session('id')); // find direct by id in single data
+        //$data=customer::where('id','=',session('id'))->fisrt(); // find direct by column in arr or single
+        return view('website.profile',["fetch"=>$data]);
     }
 
     /**
@@ -109,6 +172,7 @@ class CustomerController extends Controller
     {
         $data=customer::find($id); // find only id data from table
         $data->delete();
+        Alert::success('Congrats', 'You\'ve Successfully Deleted');
         return redirect('/manage_user'); 
     }
 }

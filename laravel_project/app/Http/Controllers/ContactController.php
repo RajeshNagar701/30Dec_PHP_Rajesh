@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\contact;
 use App\Models\customer;
 use Illuminate\Http\Request;
+use Alert;
 
 class ContactController extends Controller
 {
@@ -37,11 +38,19 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
+        //https://laravel.com/docs/11.x/validation#available-validation-rules
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email:rfc,dns',
+            'comment' => 'required',
+        ]);
+
         $data=new contact();
         $data->name=$request->name;
         $data->email=$request->email;
         $data->comment=$request->comment;
         $data->save();
+        Alert::success('Congrats', 'You\'ve Successfully Submited');
         return redirect('/it_contact');
     }
 
@@ -89,6 +98,7 @@ class ContactController extends Controller
     {
         $data=contact::find($id); // find only id data from table
         $data->delete();
+        Alert::success('Congrats', 'You\'ve Successfully Deleted');
         return redirect('/manage_contact'); 
     }
 }

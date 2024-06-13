@@ -1,4 +1,15 @@
 
+<?php
+if(session()->has('aid')) {
+ 
+}
+else
+{
+  echo "<script> 
+  window.location='admin_login';
+  </script>";
+}
+?>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -26,6 +37,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <div class="navbar navbar-inverse set-radius-zero">
         <div class="container">
             <div class="navbar-header">
@@ -44,7 +56,7 @@
 
             <div class="right-div">
 				<h1> 
-					Hi ... <?php //echo $_SESSION['aname']; ?>
+					Hi ... {{session('aname')}}
 				</h1>
                 <a href="adminlogout" class="btn btn-danger pull-right">LOG ME OUT</a>
             </div>

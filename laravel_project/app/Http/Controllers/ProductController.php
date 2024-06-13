@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use Illuminate\Http\Request;
+use Alert;
 
 class ProductController extends Controller
 {
@@ -83,6 +84,7 @@ class ProductController extends Controller
     {
         $data=product::find($id); // find only id data from table
         $data->delete();
+        Alert::success('Congrats', 'You\'ve Successfully Deleted');
         return redirect('/manage_product'); 
     }
 }

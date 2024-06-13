@@ -82,23 +82,36 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 contant_form">
               <h4>GET IN TOUCH</h4>
               <p>Our goal is to provide the best customer service and to answer all of your questions in a timely manner.</p>
+
+              @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul>
+                  @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+              </div>
+              @endif
+
+
+
               <div class="form_section">
                 <form class="form_contant" action="{{url('it_contact')}}" method="post">
                   @csrf
                   <fieldset>
-                  <div class="row">
-                    <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                      <input class="field_custom" name="name" placeholder="Your name" type="text" required />
+                    <div class="row">
+                      <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <input class="field_custom" name="name" value="{{old('name')}}" placeholder="Your name" type="text"  />
+                      </div>
+                      <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <input class="field_custom" name="email" value="{{old('email')}}" placeholder="Email adress" type="email"  />
+                      </div>
+
+                      <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <textarea class="field_custom" name="comment" value="{{old('comment')}}" placeholder="Messager" ></textarea>
+                      </div>
+                      <div class="center"><input type="submit" name="submit" class="btn main_bt" value="SUBMIT NOW" /></div>
                     </div>
-                    <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                      <input class="field_custom" name="email" placeholder="Email adress" type="email" required />
-                    </div>
-                   
-                    <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <textarea class="field_custom" name="comment" placeholder="Messager" required ></textarea>
-                    </div>
-                    <div class="center"><input type="submit" name="submit" class="btn main_bt" value="SUBMIT NOW" /></div>
-                  </div>
                   </fieldset>
                 </form>
               </div>

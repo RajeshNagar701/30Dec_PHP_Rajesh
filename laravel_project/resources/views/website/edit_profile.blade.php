@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['id']))
+if(session()->has('id'))
 {
 	
 }

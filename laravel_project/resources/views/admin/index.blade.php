@@ -1,5 +1,10 @@
-﻿
-
+﻿<?php
+if (session()->has('aid')) {
+    echo "<script> 
+    window.location='dashboard';
+    </script>";
+}
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -24,6 +29,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <div class="navbar navbar-inverse set-radius-zero">
         <div class="container">
             <div class="navbar-header">
@@ -50,8 +56,8 @@
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a href="admin-login">ADMIN PANEL</a></li>
-								
-							
+
+
 
                         </ul>
                     </div>
@@ -66,28 +72,38 @@
             <div class="row pad-botm">
                 <div class="col-md-8 col-md-offset-2">
                     <h4 class="header-line">ADMIN LOGIN</h4>
-					<div class="container">
-						<div class="row">
-							
-							
-							<form action="" method="post" >
-							
-								<div class="col-md-8 p-2">
-									Admin Email: <input value="<?php if(isset($_COOKIE['admin_cemail'])) {echo $_COOKIE['admin_cemail'];}?>" type="email" name="email" class="form-control">
-								</div>	
-								<div class="col-md-8 p-2 mb-5">
-									Password: <input value="<?php if(isset($_COOKIE['admin_cpass'])) {echo $_COOKIE['admin_cpass'];}?>"type="password" name="pass" class="form-control">
-								</div>	
-								<div class="col-md-8 p-2 mb-5">
-									Remember Me : <input type="checkbox" name="admin_rem" >
-								</div>	
-								<div class="col-md-8 p-2">
-									<input type="submit" name="submit" value="Login" class="btn btn-primary">
-								</div>		
-							
-							</form>
-						</div>
-					</div>
+                    <div class="container">
+                        <div class="row">
+
+
+                            <form action="{{url('/admin_auth')}}" method="post">
+                                @csrf
+                                <div class="col-md-8 p-2">
+                                    Admin Email: <input value="<?php if (isset($_COOKIE['admin_cemail'])) {
+                                                                    echo $_COOKIE['admin_cemail'];
+                                                                } ?>" type="email" name="email" class="form-control">
+                                    @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-8 p-2 mb-5">
+                                    Password: <input value="<?php if (isset($_COOKIE['admin_cpass'])) {
+                                                                echo $_COOKIE['admin_cpass'];
+                                                            } ?>" type="password" name="password" class="form-control">
+                                    @error('password')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-8 p-2 mb-5">
+                                    Remember Me : <input type="checkbox" name="admin_rem">
+                                </div>
+                                <div class="col-md-8 p-2">
+                                    <input type="submit" name="submit" value="Login" class="btn btn-primary">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
 
                 </div>
 

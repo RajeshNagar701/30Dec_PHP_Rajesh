@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +23,9 @@ Route::get('/', function () {
     return view('website.index');
 });
 
+Route::get('/index', function () {
+    return view('website.index');
+});
 //Route::view('/dashboard','admin.dashboard');  // Limitation don’t pass value in this method
 
 
@@ -45,6 +50,10 @@ Route::get('/signup',[CustomerController::class,'create']);
 Route::post('/signup',[CustomerController::class,'store']);
 
 Route::get('/login',[CustomerController::class,'user_login']);
+Route::post('/user_auth',[CustomerController::class,'user_auth']);
+
+Route::get('/userlogout',[CustomerController::class,'userlogout']);
+
 Route::get('/profile',[CustomerController::class,'show']);
 
 
@@ -52,7 +61,10 @@ Route::get('/profile',[CustomerController::class,'show']);
 
 // Admin
 
-Route::get('/admin_login',[CustomerController::class,'admin_login']);
+Route::get('/admin_login',[AdminController::class,'admin_login']);
+Route::post('/admin_auth',[AdminController::class,'admin_auth']);
+Route::get('/adminlogout',[AdminController::class,'adminlogout']);
+
 Route::get('/manage_user',[CustomerController::class,'index']);
 Route::get('/manage_user/{id}',[CustomerController::class,'destroy']);
 

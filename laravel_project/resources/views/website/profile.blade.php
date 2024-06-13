@@ -1,5 +1,15 @@
+<?php
+if(session()->has('id')) {
+ 
+}
+else
+{
+  echo "<script> 
+  window.location='index';
+  </script>";
+}
+?>
 @extends('website.layout.layout');
-
 @section('main_section')
 <!-- inner page banner -->
 <div id="inner_banner" class="section inner_banner_section">
@@ -49,7 +59,7 @@
 		<p><a class="btn main_bt" href="edit_profile?edit_user_btn=<?php echo $fetch->id;?>">Edit Proile</a></p>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 about_feature_img padding_right_0">
-        <div class="full text_align_center"> <img class="img-responsive" src="{{ url('website/images/customer/<?php echo $fetch->file;?>" width="100%" alt="#" /> </div>
+        <div class="full text_align_center"> <img class="img-responsive" src="website/upload/customer/<?php echo $fetch->img;?>" width="100%" alt="#" /> </div>
       </div>
     </div>
 
