@@ -43,7 +43,7 @@ if (session()->has('id')) {
 							<h4>Edit Profile Here</h4>
 
 							<div class="form_section">
-								<form class="form_contant" action="{{url('/update/$fetch->id')}}" method="post" enctype="multipart/form-data">
+								<form class="form_contant" action="{{url('update/'.$fetch->id)}}" method="post" enctype="multipart/form-data">
 									@csrf
 									<fieldset>
 										<div class="row">
@@ -102,7 +102,7 @@ if (session()->has('id')) {
 											</div>
 
 											<div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-												<input class="field_custom" name="file" type="file" />
+												<input class="field_custom" name="img" type="file" />
 												<img src="../website/upload/customer/<?php echo $fetch->img; ?>" width="50px" />
 												@error('img')
 												<div class="alert alert-danger">{{ $message }}</div>

@@ -163,15 +163,7 @@ class CustomerController extends Controller
     {
         $data=customer::find($id);
 
-        $validated = $request->validate([
-            'name' => 'required|alpha:ascii |max:255',
-             'email' => 'required',
-             'mobile' => 'required|digits:10',
-             'gender' => ['required', 'in:Male,Female'],
-             'lag' => 'required',
-             'cid' => 'required',
-             'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-         ]);
+       
  
          $data->name=$request->name;
          $data->email=$request->email;
@@ -180,13 +172,15 @@ class CustomerController extends Controller
          $data->mobile=$request->mobile;
          
          // image upload
-         if($request->hasFile('img')) //check file or not
+         if($request->hasFile('img'))
          {
+            $old_img=$data->img;
+           
             $file=$request->file('img');	 // get file	
             $filename=time()."_img.".$file->getClientOriginalExtension(); // extension with new name
             $file->move('website/upload/customer/',$filename);  // use move for move image in public/images
             $data->img=$filename;
-            unlink('website/upload/customer/{{$data->img}}');
+            unlink('website/upload/customer/'.$old_img);
          }
 
          $data->cid=$request->cid;
